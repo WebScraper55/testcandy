@@ -3,7 +3,6 @@ const app = express();
 const mysql = require('mysql2');
 const cors = require('cors');
 require('dotenv').config();
-const util = require('util');
 app.use(cors());
 app.use(express.json());
 
@@ -24,8 +23,6 @@ const db = mysql.createConnection(process.env.DATABASE_URL);
 //     password: "",
 //     database: "product"
 // })
-
-const query = util.promisify(db.query).bind(db);
 
 // app.get('/product-seller', (req, res) => {
 //     db.query('SELECT * FROM product_gp', (err, result) => {  
@@ -54,7 +51,7 @@ const query = util.promisify(db.query).bind(db);
 
 
 app.get('/product-seller', (req, res) => {
-    db.query('SELECT * FROM product_grp', (err, result) => {
+    db.query('SELECT * FROM product_gp', (err, result) => {
         if (err) {
             console.log(err);
         }else {
