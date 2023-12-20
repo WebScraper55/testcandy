@@ -54,7 +54,7 @@ const query = util.promisify(db.query).bind(db);
 
 
 app.get('/product-seller', (req, res) => {
-    db.query('SELECT * FROM olist', (err, result) => {
+    db.query('SELECT * FROM product_grp', (err, result) => {
         if (err) {
             console.log(err);
         }else {
@@ -67,7 +67,7 @@ app.get('/product-seller', (req, res) => {
 app.get('/product-all/:model', async (req, res) => {
     const model = req.params.model;
     console.log(model);
-    db.query('SELECT * FROM oall WHERE MODEL = ?', [model], (err, result) => {
+    db.query('SELECT * FROM product WHERE MODEL = ?', [model], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
